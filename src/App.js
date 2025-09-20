@@ -8,7 +8,7 @@ import { AuthProvider } from './context/AuthContext';
 const App = () => {
   return (
     <AuthProvider>
-      <Router>
+      <Router basename="/regalo-boda">
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
