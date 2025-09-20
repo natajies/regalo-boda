@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/regalo-boda/static/css/main.b51d41e9.css",
+    "main.js": "/regalo-boda/static/js/main.80ada6df.js",
+    "static/js/488.c6977649.chunk.js": "/regalo-boda/static/js/488.c6977649.chunk.js",
+    "static/media/background.jpg": "/regalo-boda/static/media/background.9cf75e63b77946c604be.jpg",
+    "index.html": "/regalo-boda/index.html",
+    "main.b51d41e9.css.map": "/regalo-boda/static/css/main.b51d41e9.css.map",
+    "main.80ada6df.js.map": "/regalo-boda/static/js/main.80ada6df.js.map",
+    "488.c6977649.chunk.js.map": "/regalo-boda/static/js/488.c6977649.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b51d41e9.css",
+    "static/js/main.80ada6df.js"
+  ]
+}
