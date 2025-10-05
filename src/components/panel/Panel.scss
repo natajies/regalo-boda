@@ -10,23 +10,51 @@
   overflow: hidden;
 }
 
-.panel-title {
-  padding: 30px 0;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  margin: 0;
-}
-
 .panel-content {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden; /* Asegura que no se desborde */
+  min-height: 0; /* Permite que flex funcione correctamente */
 }
 
 .pistas {
   width: 90%;
   max-width: none;
+  background-color: rgb(229 234 239 / 88%);
+  border-radius: 10px;
+  height: 100%; /* Usar toda la altura disponible del contenedor flex */
+  max-height: calc(
+    100vh - 200px
+  ); /* Ajustado para considerar menú + barra de progreso */
+  overflow-y: auto; /* Scroll vertical cuando sea necesario */
+  padding: 20px;
+  box-sizing: border-box; /* Incluir padding en el cálculo de altura */
+}
+
+/* Estilos personalizados para scrollbar */
+.pistas::-webkit-scrollbar {
+  width: 12px; /* Ancho de la scrollbar */
+}
+
+.pistas::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1); /* Fondo del track */
+  border-radius: 6px;
+}
+
+.pistas::-webkit-scrollbar-thumb {
+  background-color: #594740; /* Color marrón de la barra */
+  border-radius: 6px;
+  border: 2px solid rgba(229, 234, 239, 0.88); /* Borde que coincide con el fondo */
+}
+
+.pistas::-webkit-scrollbar-thumb:hover {
+  background-color: #ce643a; /* Color al hacer hover */
+}
+
+.pistas::-webkit-scrollbar-corner {
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .pistas-table {
@@ -54,17 +82,281 @@
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-.pista-link {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: #594740;
-  color: white;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
+.pistas-linea {
+  padding: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
 }
 
-.pista-link:hover {
-  background-color: #45a049;
+.pistas-linea-botones {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  grid-column: 1 / -1;
+  grid-row: 1 / 2;
+  height: 34px;
+}
+
+.pistas-linea-botones button {
+  padding: 4px 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-generico {
+  padding: 7px 10px 4px 10px;
+  background-color: #594740;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 14px;
+  align-items: center;
+}
+
+.pistas-linea-botones-iconos {
+  background-color: transparent; /* Fondo completamente transparente */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 40px;
+  text-indent: -9999px; /* Oculta el texto */
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.pistas-linea-botones-localizacion {
+  background-image: url('../../assets/icono-loc.png');
+}
+
+.pistas-linea-botones-subir-foto {
+  background-image: url('../../assets/icono-upl.png');
+}
+
+.pistas-linea-botones-vermas:hover {
+  background-color: #ce643a;
+}
+
+.pistas-linea-botones-vermas {
+  margin-left: auto;
+  padding-top: 8px;
+}
+
+.pista-link {
+  color: white;
+  text-decoration: none;
+}
+
+.pistas-linea-texto {
+  font-size: 16px;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+  grid-column: 1 / -1;
+  grid-row: 2 / 2;
+}
+
+.pistas-linea-botones-estado.btn-verde {
+  color: #65bc49;
+  border: 2px solid #65bc49;
+  background-color: #c7e5c5;
+  font-weight: bold;
+}
+
+.pistas-linea-botones-estado.btn-rojo {
+  color: #bc4949;
+  border: 2px solid #bc4949;
+  background-color: #e5c5c5;
+  font-weight: bold;
+}
+
+.pistas-linea-botones-estado.btn-amarillo {
+  color: #bcbc49;
+  border: 2px solid #bcbc49;
+  background-color: #e5e5c5;
+  font-weight: bold;
+}
+
+.menu {
+  height: 50px;
+  background-color: rgb(229 234 239 / 30%);
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative; /* Necesario para que el dropdown se posicione correctamente */
+}
+
+.menu-infouser {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 20px;
+  gap: 10px;
+  width: fit-content;
+  margin-left: auto;
+  position: relative; /* Necesario para que el dropdown se posicione correctamente */
+  cursor: pointer;
+}
+
+.menu-infouser-foto img {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.arrow {
+  background-color: transparent; /* Fondo completamente transparente */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 40px;
+  height: 40px;
+  text-indent: -9999px; /* Oculta el texto */
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.arrow-down {
+  background-image: url('../../assets/icono-dropdown.png');
+}
+
+.arrow-up {
+  background-image: url('../../assets/icono-dropup.png');
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 9999; /* Z-index muy alto para estar por encima de todo */
+  min-width: 200px;
+  overflow: hidden;
+  animation: dropdownFadeIn 0.2s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu-dropdown-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #333;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.menu-dropdown-item.logout:hover {
+  background-color: #afabaa;
+}
+
+/* Barra de progreso */
+.progress-container {
+  background-color: rgb(255 255 255 / 85%);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 15px 20px; /* Reducir padding vertical */
+  margin: 10px 20px; /* Reducir margen vertical */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  flex-shrink: 0; /* No permitir que se encoja */
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px; /* Reducir margen inferior */
+}
+
+.progress-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.progress-percentage {
+  font-size: 20px;
+  font-weight: bold;
+  color: #4caf50;
+  background-color: rgba(76, 175, 80, 0.1);
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 8px; /* Reducir margen inferior */
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #81c784);
+  border-radius: 6px;
+  transition: width 0.5s ease-in-out;
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.progress-stats {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
 }
