@@ -4,6 +4,7 @@ import './Panel.scss';
 import { db } from '../../model/database/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { useAuth } from '../../context/AuthContext';
+import Tarjeta from './Tarjeta';
 
 const Panel = () => {
   const [clues, setClues] = useState([]);
@@ -16,7 +17,7 @@ const Panel = () => {
     const completedClues = clues.filter(
       (clue) => clue.estado === 'Completada',
     ).length;
-    return Math.round((completedClues / clues.length) * 100);
+    return Math.round((completedClues / 24) * 100);
   };
 
   useEffect(() => {
@@ -68,19 +69,6 @@ const Panel = () => {
     navigate('/login');
   };
 
-  const handleLocationClick = (lugar) => {
-    if (!lugar || lugar === 'N/A') {
-      alert('No hay ubicación disponible para esta pista');
-      return;
-    }
-
-    // Construir la URL de Google Maps con la ubicación
-    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(lugar)}`;
-
-    // Abrir en nueva pestaña
-    window.open(mapsUrl, '_blank');
-  };
-
   return (
     <div className="panel-container">
       <div className="menu">
@@ -130,40 +118,24 @@ const Panel = () => {
 
       <div className="panel-content">
         <div className="pistas">
-          {clues.map((clue) => {
-            const clueStatusClass =
-              clue.estado === 'Pendiente'
-                ? 'btn-amarillo'
-                : clue.estado === 'Rechazada'
-                  ? 'btn-rojo'
-                  : 'btn-verde';
-            return (
-              <div className="pistas-linea" key={clue.id}>
-                <div className="pistas-linea-botones">
-                  <div
-                    className={`btn-generico pistas-linea-botones-estado ${clueStatusClass}`}
-                  >
-                    {clue.estado}
-                  </div>
-                  <button
-                    className="pistas-linea-botones-iconos pistas-linea-botones-localizacion"
-                    onClick={() => handleLocationClick(clue.lugar)}
-                    title={`Abrir ubicación: ${clue.lugar || 'No disponible'}`}
+          {clues
+            .sort((a, b) => {
+              const ordenar = ['Rechazada', 'Pendiente', 'Completada'];
+              return ordenar.indexOf(a.estado) - ordenar.indexOf(b.estado);
+            })
+            .map((clue) => {
+              return (
+                <div className="pistas-linea" key={clue.id}>
+                  <Tarjeta
+                    imagen={clue.imagen}
+                    adivinanza={clue.adivinanza}
+                    estado={clue.estado}
+                    lugar={clue.lugar}
+                    id={clue.id}
                   />
-                  <button
-                    className="pistas-linea-botones-iconos pistas-linea-botones-subir-foto"
-                    onClick={() => {}}
-                  />
-                  <div className="btn-generico pistas-linea-botones-vermas">
-                    <Link to={`/pista/${clue.id}`} className="pista-link">
-                      Ver más
-                    </Link>
-                  </div>
                 </div>
-                <div className="pistas-linea-texto">{clue.adivinanza}</div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       </div>
     </div>

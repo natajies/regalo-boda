@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Space+Grotesk:wght@300..700&display=swap');
+
 .panel-container {
   text-align: center;
   height: 100vh;
@@ -8,6 +11,10 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  font-family: 'Space Grotesk', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .panel-content {
@@ -15,8 +22,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden; /* Asegura que no se desborde */
-  min-height: 0; /* Permite que flex funcione correctamente */
+  overflow: hidden;
+  min-height: 0;
 }
 
 .pistas {
@@ -24,164 +31,44 @@
   max-width: none;
   background-color: rgb(229 234 239 / 88%);
   border-radius: 10px;
-  height: 100%; /* Usar toda la altura disponible del contenedor flex */
-  max-height: calc(
-    100vh - 200px
-  ); /* Ajustado para considerar menú + barra de progreso */
-  overflow-y: auto; /* Scroll vertical cuando sea necesario */
+  height: 100%;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
   padding: 20px;
-  box-sizing: border-box; /* Incluir padding en el cálculo de altura */
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  align-content: start;
 }
 
-/* Estilos personalizados para scrollbar */
 .pistas::-webkit-scrollbar {
-  width: 12px; /* Ancho de la scrollbar */
+  width: 12px;
 }
 
 .pistas::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1); /* Fondo del track */
+  background: rgba(0, 0, 0, 0.1);
   border-radius: 6px;
 }
 
 .pistas::-webkit-scrollbar-thumb {
-  background-color: #594740; /* Color marrón de la barra */
+  background-color: #594740;
   border-radius: 6px;
-  border: 2px solid rgba(229, 234, 239, 0.88); /* Borde que coincide con el fondo */
+  border: 2px solid rgba(229, 234, 239, 0.88);
 }
 
 .pistas::-webkit-scrollbar-thumb:hover {
-  background-color: #ce643a; /* Color al hacer hover */
+  background-color: #ce643a;
 }
 
 .pistas::-webkit-scrollbar-corner {
   background: rgba(0, 0, 0, 0.1);
 }
 
-.pistas-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.pistas-table th,
-.pistas-table td {
-  padding: 15px;
-  text-align: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.pistas-table th {
-  background-color: #594740;
-  color: white;
-  font-weight: bold;
-}
-
-.pistas-table tbody tr:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
 .pistas-linea {
-  padding: 20px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto;
-}
-
-.pistas-linea-botones {
   display: flex;
-  gap: 10px;
-  margin-bottom: 15px;
-  grid-column: 1 / -1;
-  grid-row: 1 / 2;
-  height: 34px;
-}
-
-.pistas-linea-botones button {
-  padding: 4px 10px;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.btn-generico {
-  padding: 7px 10px 4px 10px;
-  background-color: #594740;
-  color: white;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 14px;
-  align-items: center;
-}
-
-.pistas-linea-botones-iconos {
-  background-color: transparent; /* Fondo completamente transparente */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 40px;
-  text-indent: -9999px; /* Oculta el texto */
-  overflow: hidden;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.pistas-linea-botones-localizacion {
-  background-image: url('../../assets/icono-loc.png');
-}
-
-.pistas-linea-botones-subir-foto {
-  background-image: url('../../assets/icono-upl.png');
-}
-
-.pistas-linea-botones-vermas:hover {
-  background-color: #ce643a;
-}
-
-.pistas-linea-botones-vermas {
-  margin-left: auto;
-  padding-top: 8px;
-}
-
-.pista-link {
-  color: white;
-  text-decoration: none;
-}
-
-.pistas-linea-texto {
-  font-size: 16px;
-  margin-bottom: 15px;
-  padding: 10px;
-  background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 5px;
-  grid-column: 1 / -1;
-  grid-row: 2 / 2;
-}
-
-.pistas-linea-botones-estado.btn-verde {
-  color: #65bc49;
-  border: 2px solid #65bc49;
-  background-color: #c7e5c5;
-  font-weight: bold;
-}
-
-.pistas-linea-botones-estado.btn-rojo {
-  color: #bc4949;
-  border: 2px solid #bc4949;
-  background-color: #e5c5c5;
-  font-weight: bold;
-}
-
-.pistas-linea-botones-estado.btn-amarillo {
-  color: #bcbc49;
-  border: 2px solid #bcbc49;
-  background-color: #e5e5c5;
-  font-weight: bold;
+  justify-content: center;
+  align-items: start;
 }
 
 .menu {
@@ -189,7 +76,7 @@
   background-color: rgb(229 234 239 / 30%);
   width: 100%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  position: relative; /* Necesario para que el dropdown se posicione correctamente */
+  position: relative;
 }
 
 .menu-infouser {
@@ -200,7 +87,7 @@
   gap: 10px;
   width: fit-content;
   margin-left: auto;
-  position: relative; /* Necesario para que el dropdown se posicione correctamente */
+  position: relative;
   cursor: pointer;
 }
 
@@ -212,13 +99,13 @@
 }
 
 .arrow {
-  background-color: transparent; /* Fondo completamente transparente */
+  background-color: transparent;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   width: 40px;
   height: 40px;
-  text-indent: -9999px; /* Oculta el texto */
+  text-indent: -9999px;
   overflow: hidden;
   border: none;
   cursor: pointer;
@@ -241,7 +128,7 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 9999; /* Z-index muy alto para estar por encima de todo */
+  z-index: 9999;
   min-width: 200px;
   overflow: hidden;
   animation: dropdownFadeIn 0.2s ease-out;
@@ -276,23 +163,28 @@
   background-color: #afabaa;
 }
 
-/* Barra de progreso */
 .progress-container {
   background-color: rgb(255 255 255 / 85%);
   backdrop-filter: blur(10px);
   border-radius: 12px;
-  padding: 15px 20px; /* Reducir padding vertical */
-  margin: 10px 20px; /* Reducir margen vertical */
+  padding: 15px 20px;
+  margin: 10px auto;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  flex-shrink: 0; /* No permitir que se encoja */
+  flex-shrink: 0;
+  width: 90%;
+  max-width: none;
 }
 
 .progress-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px; /* Reducir margen inferior */
+  margin-bottom: 10px;
+  font-family: 'Lobster', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .progress-header h3 {
@@ -305,7 +197,7 @@
 .progress-percentage {
   font-size: 20px;
   font-weight: bold;
-  color: #4caf50;
+  color: #5e86d1;
   background-color: rgba(76, 175, 80, 0.1);
   padding: 5px 10px;
   border-radius: 20px;
@@ -318,12 +210,12 @@
   border-radius: 6px;
   overflow: hidden;
   position: relative;
-  margin-bottom: 8px; /* Reducir margen inferior */
+  margin-bottom: 8px;
 }
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #4caf50, #81c784);
+  background: linear-gradient(90deg, #587ec3, #d3b0d2);
   border-radius: 6px;
   transition: width 0.5s ease-in-out;
   position: relative;

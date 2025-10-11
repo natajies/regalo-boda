@@ -1,0 +1,145 @@
+.tarjeta-content {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  width: 100%;
+  max-width: 350px;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tarjeta-content-adivinanza {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.tarjeta-content-adivinanza-text {
+  font-size: 16px;
+  margin-bottom: 0;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+  grid-column: 1 / -1;
+  grid-row: 2 / 2;
+  height: 145px;
+}
+
+.tarjeta-content-links-vermas {
+  color: white;
+  text-decoration: none;
+}
+
+.btn-generico {
+  padding: 7px 10px 4px 10px;
+  background-color: #594740;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 14px;
+  align-items: center;
+}
+
+.btn-verde {
+  color: #65bc49;
+  border: 2px solid #65bc49;
+  background-color: #c7e5c5;
+  font-weight: bold;
+}
+
+.btn-rojo {
+  color: #bc4949;
+  border: 2px solid #bc4949;
+  background-color: #e5c5c5;
+  font-weight: bold;
+}
+
+.btn-amarillo {
+  color: #bcbc49;
+  border: 2px solid #bcbc49;
+  background-color: #e5e5c5;
+  font-weight: bold;
+}
+
+.pistas-linea-botones-iconos {
+  background-color: transparent;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 40px;
+  text-indent: -9999px;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.pistas-linea-botones-localizacion {
+  background-image: url('../../assets/icono-loc.png');
+}
+
+.tarjeta-content-lista {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tarjeta-content-lista li {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.tarjeta-content-lista-elem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.tarjeta-content-links {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.tarjeta-content-links-vermas {
+  padding: 9px 11px 7px 12px;
+}
+
+.tarjeta-content-links-vermas:hover {
+  background-color: #ce643a;
+}
+
+.tarjeta-content-image {
+  width: 90%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 2px;
+  margin-bottom: 10px;
+  border: 2px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 13px;
+  background-color: #fff;
+}
+
+.tarjeta-content-links-btn-lugar {
+  background-color: transparent;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('../../assets/icono-loc.png');
+  width: 40px;
+  height: 30px;
+  text-indent: -9999px;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
