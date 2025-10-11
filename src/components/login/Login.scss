@@ -1,4 +1,6 @@
-.login-container {
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+
+.login {
   text-align: center;
   height: 100vh;
   background-image: url('../../assets/background.jpg');
@@ -16,7 +18,7 @@
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
+  max-width: 550px;
   width: 100%;
 }
 
@@ -26,18 +28,53 @@
   width: 80%;
 }
 
-.login-form button {
+.login-form button:hover {
+  background-color: #45a049;
+}
+
+.login-form-logo {
+  background-image: url('../../assets/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 20px auto;
+}
+
+.login-form-text {
+  color: #333;
+  margin-bottom: 20px;
+  padding: 0 10px;
+  font-family: 'Dancing Script', cursive;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 24px; /* Ajusta el tamaño del texto */
+  line-height: 1.5; /* Ajusta la altura de línea para mejorar la legibilidad */
+}
+
+.login-form-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 15px 30px;
-  margin-top: 30px;
-  background-color: #594740;
-  color: white;
+  margin: 30px auto 20px auto;
+  background-color: #f9fafba6;
+  color: black;
   border: none;
   cursor: pointer;
   font-size: 16px;
   border-radius: 5px;
-  width: 150px;
+  width: 250px;
 }
 
-.login-form button:hover {
-  background-color: #45a049;
+.login-form-button-icon {
+  background-image: url('../../assets/icono-google.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
 }

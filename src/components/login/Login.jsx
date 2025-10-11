@@ -12,7 +12,6 @@ const Login = () => {
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
-      // Firebase Auth actualizará automáticamente el contexto
       navigate('/panel');
     } catch (error) {
       setMessage('Error al iniciar sesión: ' + error.message);
@@ -20,9 +19,19 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className="login">
       <div className="login-form">
-        <button onClick={handleLogin}>Ingresar</button>
+        <div className="login-form-logo" />
+        <div className="login-form-text">
+          Bienvenid@s al principio de esta nueva aventura, aqui cada pista es un
+          hilo rojo que os conectará con momentos mágicos. Inicia sesión y
+          descubre los destinos que os llevarán a crear recuerdos inolvidables
+          juntos.
+        </div>
+        <div onClick={handleLogin} className="login-form-button">
+          <div className="login-form-button-icon" />
+          <div className="login-form-button-text">Continuar con Google</div>
+        </div>
         <p>{message}</p>
       </div>
     </div>
