@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/regalo-boda/static/css/main.98f21f5c.css",
-    "main.js": "/regalo-boda/static/js/main.314e042f.js",
+    "main.js": "/regalo-boda/static/js/main.cecccc7d.js",
     "static/js/488.c6977649.chunk.js": "/regalo-boda/static/js/488.c6977649.chunk.js",
     "static/media/pista_pendiente.png": "/regalo-boda/static/media/pista_pendiente.a3cd67040b1a2cd271fc.png",
     "static/media/background.jpg": "/regalo-boda/static/media/background.9cf75e63b77946c604be.jpg",
@@ -15,11 +15,11 @@
     "static/media/icono-aprobar.png": "/regalo-boda/static/media/icono-aprobar.9817b92eff38684c37cd.png",
     "index.html": "/regalo-boda/index.html",
     "main.98f21f5c.css.map": "/regalo-boda/static/css/main.98f21f5c.css.map",
-    "main.314e042f.js.map": "/regalo-boda/static/js/main.314e042f.js.map",
+    "main.cecccc7d.js.map": "/regalo-boda/static/js/main.cecccc7d.js.map",
     "488.c6977649.chunk.js.map": "/regalo-boda/static/js/488.c6977649.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.98f21f5c.css",
-    "static/js/main.314e042f.js"
+    "static/js/main.cecccc7d.js"
   ]
 }
