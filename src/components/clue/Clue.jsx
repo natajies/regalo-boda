@@ -1,8 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { db } from '../../model/database/firebase';
-import { doc, getDoc, updateDoc, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } from 'firebase/firestore';
+import {
+  doc,
+  getDoc,
+  updateDoc,
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  onSnapshot,
+  serverTimestamp,
+} from 'firebase/firestore';
 import './Clue.scss';
 import pistaPendiente from '../../assets/pista_pendiente.png'; // Importa la imagen por defecto
 
@@ -19,24 +29,33 @@ const Clue = () => {
   const [newCommentText, setNewCommentText] = useState('');
   const [posting, setPosting] = useState(false);
   const [commentsLoading, setCommentsLoading] = useState(true);
-  const comentariosCollectionRef = collection(db, 'pistas', String(id), 'comentarios');
+  const comentariosCollectionRef = collection(
+    db,
+    'pistas',
+    String(id),
+    'comentarios',
+  );
 
   useEffect(() => {
     console.log(user?.rol);
     setCommentsLoading(true);
     const q = query(comentariosCollectionRef, orderBy('createdAt', 'desc'));
 
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const datos = snapshot.docs.map((d) => ({
-        id: d.id,
-        ...d.data(),
-      }));
-      setComments(datos);
-      setCommentsLoading(false);
-    }, (error) => {
-      console.error('Error al leer comentarios:', error);
-      setCommentsLoading(false);
-    });
+    const unsubscribe = onSnapshot(
+      q,
+      (snapshot) => {
+        const datos = snapshot.docs.map((d) => ({
+          id: d.id,
+          ...d.data(),
+        }));
+        setComments(datos);
+        setCommentsLoading(false);
+      },
+      (error) => {
+        console.error('Error al leer comentarios:', error);
+        setCommentsLoading(false);
+      },
+    );
 
     return () => unsubscribe();
   }, [id]);
@@ -45,37 +64,40 @@ const Clue = () => {
   useEffect(() => {
     const fetchClue = async () => {
       try {
-        const docRef = doc(db, "pistas", id);
+        const docRef = doc(db, 'pistas', id);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) setClue({ id: docSnap.id, ...docSnap.data() });
-      } catch (error) { setClue({ error: error.message });
-      } finally { setLoading(false); }
+      } catch (error) {
+        setClue({ error: error.message });
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchClue();
   }, [id]);
 
   // Cargando
-  if (loading) return (
-    <div className="clue-container">
-      <h1>Cargando...</h1>
-    </div>
-  );
+  if (loading)
+    return (
+      <div className="clue-container">
+        <h1>Cargando...</h1>
+      </div>
+    );
 
   // En caso de no encontrar la pista
-  if (!clue) return (
-    <div className="clue-container">
-      <h1>No se encontró la pista</h1>
-    </div>
-  );
+  if (!clue)
+    return (
+      <div className="clue-container">
+        <h1>No se encontró la pista</h1>
+      </div>
+    );
 
-  // TODO Revisar, no funciona
   const handleUserMenuClick = () => {
     setShowDropdown(!showDropdown);
   };
 
-  // TODO Probar
   const handleLogout = async () => {
     await logout();
     setShowDropdown(false);
@@ -148,7 +170,7 @@ const Clue = () => {
         text,
         authorName: user.displayName || 'Usuario',
         authorPhoto: user.photoURL || null,
-        createdAt: serverTimestamp()
+        createdAt: serverTimestamp(),
       });
       setNewCommentText('');
       // No hace falta recargar: onSnapshot actualiza automáticamente
@@ -165,7 +187,10 @@ const Clue = () => {
       <div className="clue-container">
         <div className="clue-header">
           {/* Botón volver a la izquierda */}
-          <div className="clue-header-return arrow arrow-left" onClick={() => navigate('/panel')}></div>
+          <div
+            className="clue-header-return arrow arrow-left"
+            onClick={() => navigate('/panel')}
+          ></div>
           {/* Mostrar el icono del usuario con el cerrar sesión y el nombre de usuario */}
           <div className="menu-infouser" onClick={handleUserMenuClick}>
             <div className="menu-infouser-foto">
@@ -197,13 +222,16 @@ const Clue = () => {
         {/* Opciones de la pista */}
         <div className="pista-linea-botones">
           {/* Estado */}
-          <div className={`btn-estado btn-generico pista-linea-botones-estado ${clueStatusClass}`}>
+          <div
+            className={`btn-estado btn-generico pista-linea-botones-estado ${clueStatusClass}`}
+          >
             {clue.estado}
           </div>
 
           {/* Localización */}
           <div className="display-flex">
-            <button className="pista-linea-botones-iconos pista-linea-botones-localizacion"
+            <button
+              className="pista-linea-botones-iconos pista-linea-botones-localizacion"
               onClick={() => handleLocationClick(clue.lugar)}
               title={`Abrir ubicación: ${clue.lugar || 'No disponible'}`}
             />
@@ -211,45 +239,52 @@ const Clue = () => {
           </div>
 
           {/* Subir imagen — solo visible para novios y estado Pendiente/Rechazada */}
-          {/*
-          // TODO Revisar - Pendiente de AuthContext que no carga bien el rol de la colección usuarios
-          {user?.rol === 'Novios' && (clue.estado === 'Rechazada' || (clue.estado === 'Pendiente' && !clue.imagen)) && (    */}
-            <div className="display-flex">
-              <button className="pista-linea-botones-iconos pista-linea-botones-subir-foto"
-                onClick={() => document.getElementById('fileInput').click()} />
-              <p className="pista-botones-texto">&nbsp;- Subir foto</p>
 
-              <input id="fileInput" type="file" accept="image/*" 
-                style={{ display: 'none' }}
-                onChange={(e) => handleFileUpload(e)}
-              />
-            </div>
-{/*          )}     */}
-          
+          {user?.rol === 'Novios' &&
+            (clue.estado === 'Rechazada' ||
+              (clue.estado === 'Pendiente' && !clue.imagen)) && (
+              <div className="display-flex">
+                <button
+                  className="pista-linea-botones-iconos pista-linea-botones-subir-foto"
+                  onClick={() => document.getElementById('fileInput').click()}
+                />
+                <p className="pista-botones-texto">&nbsp;- Subir foto</p>
+
+                <input
+                  id="fileInput"
+                  type="file"
+                  accept="image/*"
+                  style={{ display: 'none' }}
+                  onChange={(e) => handleFileUpload(e)}
+                />
+              </div>
+            )}
 
           {/* Aprobar/Rechazar — solo visible para admin y estado Pendiente con imagen */}
-          {/*
-          // TODO Revisar - Pendiente de AuthContext que no carga bien el rol de la colección usuarios
-          {user?.rol === 'admin' && clue.estado === 'Pendiente' && clue.imagen && (     */}
-            <div className="display-flex">
-              <button className="pista-linea-botones-iconos pista-linea-botones-aprobar"
-                onClick={() => handleChangeClueStatus('Completada')}
-              />
-              <p className="pista-botones-texto">&nbsp;- Aprobar</p>
-            </div>
-{/*          )}     */}
+          {user?.rol === 'admin' &&
+            clue.estado === 'Pendiente' &&
+            clue.imagen && (
+              <div className="display-flex">
+                <button
+                  className="pista-linea-botones-iconos pista-linea-botones-aprobar"
+                  onClick={() => handleChangeClueStatus('Completada')}
+                />
+                <p className="pista-botones-texto">&nbsp;- Aprobar</p>
+              </div>
+            )}
 
           {/* Rechazar — solo visible para admin y estado Pendiente con imagen */}
-          {/*
-          // TODO Revisar - Pendiente de AuthContext que no carga bien el rol de la colección usuarios
-          {user?.rol === 'admin' && clue.estado === 'Pendiente' && clue.imagen && (       */}
-            <div className="display-flex">
-              <button className="pista-linea-botones-iconos pista-linea-botones-rechazar"
-                onClick={() => handleChangeClueStatus('Rechazada')}
-              />
-              <p className="pista-botones-texto">&nbsp;- Rechazar</p>
-            </div>
-{/*          )}     */}
+          {user?.rol === 'admin' &&
+            clue.estado === 'Pendiente' &&
+            clue.imagen && (
+              <div className="display-flex">
+                <button
+                  className="pista-linea-botones-iconos pista-linea-botones-rechazar"
+                  onClick={() => handleChangeClueStatus('Rechazada')}
+                />
+                <p className="pista-botones-texto">&nbsp;- Rechazar</p>
+              </div>
+            )}
         </div>
 
         {/* Imagen por defecto si no se ha subido y la subida en caso contrario */}
@@ -274,7 +309,11 @@ const Clue = () => {
             <div className="comment-box-right">
               <textarea
                 className="comment-textarea"
-                placeholder={user ? 'Escribe un comentario...' : 'Inicia sesión para comentar'}
+                placeholder={
+                  user
+                    ? 'Escribe un comentario...'
+                    : 'Inicia sesión para comentar'
+                }
                 value={newCommentText}
                 onChange={(e) => setNewCommentText(e.target.value)}
                 disabled={!user || posting}
@@ -284,7 +323,9 @@ const Clue = () => {
                 <button
                   className="btn btn-comment"
                   onClick={handlePostComment}
-                  disabled={!user || posting || newCommentText.trim().length === 0}
+                  disabled={
+                    !user || posting || newCommentText.trim().length === 0
+                  }
                 >
                   {posting ? 'Enviando...' : 'Comentar'}
                 </button>
@@ -310,7 +351,9 @@ const Clue = () => {
                   </div>
                   <div className="comment-item-right">
                     <div className="comment-meta">
-                      <span className="comment-author-name">{c.authorName || 'Usuario'}</span>
+                      <span className="comment-author-name">
+                        {c.authorName || 'Usuario'}
+                      </span>
                       <span className="comment-date">
                         {formatTimestamp(c.createdAt)}
                       </span>
@@ -392,7 +435,7 @@ function formatTimestamp(ts) {
       month: 'short',
       year: 'numeric',
       hour: '2-digit',
-      minute: '2-digit'
+      minute: '2-digit',
     }).format(date);
   } catch (e) {
     return '';

@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
               email: firebaseUser.email,
               displayName: firebaseUser.displayName,
               photoURL: firebaseUser.photoURL,
-              rol: authUser.rol || 'generico',
+              rol: authUser.data().rol || 'generico',
             });
           } else {
             await signOut(auth);
