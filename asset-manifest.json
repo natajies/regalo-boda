@@ -1,21 +1,25 @@
 {
   "files": {
-    "main.css": "/regalo-boda/static/css/main.07d81fbe.css",
-    "main.js": "/regalo-boda/static/js/main.a94869a1.js",
+    "main.css": "/regalo-boda/static/css/main.98f21f5c.css",
+    "main.js": "/regalo-boda/static/js/main.314e042f.js",
     "static/js/488.c6977649.chunk.js": "/regalo-boda/static/js/488.c6977649.chunk.js",
+    "static/media/pista_pendiente.png": "/regalo-boda/static/media/pista_pendiente.a3cd67040b1a2cd271fc.png",
     "static/media/background.jpg": "/regalo-boda/static/media/background.9cf75e63b77946c604be.jpg",
     "static/media/unknown.png": "/regalo-boda/static/media/unknown.5b4e5f67eaa946fd23dc.png",
     "static/media/icono-google.png": "/regalo-boda/static/media/icono-google.4ef98d6b4f05fc738c4a.png",
     "static/media/logo.png": "/regalo-boda/static/media/logo.a9e3fe8a5154a7ff9a6b.png",
     "static/media/icono-loc.png": "/regalo-boda/static/media/icono-loc.11899f946c25cebf1f6b.png",
+    "static/media/icono-upl.png": "/regalo-boda/static/media/icono-upl.7dc5e37858b5338f7d51.png",
+    "static/media/icono-rechazar.png": "/regalo-boda/static/media/icono-rechazar.9c96f11c3425f628eb56.png",
     "static/media/icono-dropup.png": "/regalo-boda/static/media/icono-dropup.f8255aafbeac19530fb9.png",
+    "static/media/icono-aprobar.png": "/regalo-boda/static/media/icono-aprobar.9817b92eff38684c37cd.png",
     "index.html": "/regalo-boda/index.html",
-    "main.07d81fbe.css.map": "/regalo-boda/static/css/main.07d81fbe.css.map",
-    "main.a94869a1.js.map": "/regalo-boda/static/js/main.a94869a1.js.map",
+    "main.98f21f5c.css.map": "/regalo-boda/static/css/main.98f21f5c.css.map",
+    "main.314e042f.js.map": "/regalo-boda/static/js/main.314e042f.js.map",
     "488.c6977649.chunk.js.map": "/regalo-boda/static/js/488.c6977649.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.07d81fbe.css",
-    "static/js/main.a94869a1.js"
+    "static/css/main.98f21f5c.css",
+    "static/js/main.314e042f.js"
   ]
 }
