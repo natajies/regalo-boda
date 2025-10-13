@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { db } from '../../model/database/firebase';
 import {
@@ -16,6 +16,8 @@ import {
 import pistaPendiente from '../../assets/pista_pendiente.png'; // Importa la imagen por defecto
 import Menu from '../menu';
 import Imagen from '../imagen/Imagen';
+import { BotonEstado, BotonGenerico } from '../botones';
+import mostrarUbicacionPista from '../../model/features/mostrarUbicacionPista';
 
 import './Clue.scss';
 
@@ -96,23 +98,6 @@ const Clue = () => {
     );
   }
 
-  const clueStatusClass =
-    clue.estado === 'Pendiente'
-      ? 'btn-amarillo'
-      : clue.estado === 'Rechazada'
-        ? 'btn-rojo'
-        : 'btn-verde';
-
-  const handleLocationClick = (lugar) => {
-    if (!lugar || lugar === 'N/A') {
-      alert('No hay ubicación disponible para esta pista');
-      return;
-    }
-    // Construir la URL de Google Maps con la ubicación
-    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(lugar)}`;
-    window.open(mapsUrl, '_blank');
-  };
-
   // Subir imagen en base64, reducir tamaño si es necesario
   const handleFileUpload = async (event) => {
     const file = event.target.files[0];
@@ -189,18 +174,13 @@ const Clue = () => {
         {/* Opciones de la pista */}
         <div className="pista-linea-botones">
           {/* Estado */}
-          <div
-            className={`btn-estado btn-generico pista-linea-botones-estado ${clueStatusClass}`}
-          >
-            {clue.estado}
-          </div>
+          <BotonEstado estado={clue.estado} />
 
           {/* Localización */}
           <div className="display-flex">
-            <button
-              className="pista-linea-botones-iconos pista-linea-botones-localizacion"
-              onClick={() => handleLocationClick(clue.lugar)}
-              title={`Abrir ubicación: ${clue.lugar || 'No disponible'}`}
+            <BotonGenerico
+              procesarClick={mostrarUbicacionPista}
+              propiedades={{ lugar: clue.lugar }}
             />
             <p className="pista-botones-texto">- {clue.lugar}</p>
           </div>

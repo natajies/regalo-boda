@@ -25,57 +25,7 @@
   border-radius: 5px;
   grid-column: 1 / -1;
   grid-row: 2 / 2;
-  height: 145px;
-}
-
-.tarjeta-content-links-vermas {
-  color: white;
-  text-decoration: none;
-}
-
-.btn-generico {
-  padding: 7px 10px 4px 10px;
-  background-color: #594740;
-  color: white;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 14px;
-  align-items: center;
-}
-
-.btn-verde {
-  color: #65bc49;
-  border: 2px solid #65bc49;
-  background-color: #c7e5c5;
-  font-weight: bold;
-}
-
-.btn-rojo {
-  color: #bc4949;
-  border: 2px solid #bc4949;
-  background-color: #e5c5c5;
-  font-weight: bold;
-}
-
-.btn-amarillo {
-  color: #bcbc49;
-  border: 2px solid #bcbc49;
-  background-color: #e5e5c5;
-  font-weight: bold;
-}
-
-.pistas-linea-botones-iconos {
-  background-color: transparent;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 40px;
-  text-indent: -9999px;
-  overflow: hidden;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
+  height: 170px;
 }
 
 .pistas-linea-botones-localizacion {
@@ -107,29 +57,6 @@
   justify-content: space-between;
   align-items: center;
   margin-top: auto;
-}
-
-.tarjeta-content-links-vermas {
-  padding: 9px 11px 7px 12px;
-}
-
-.tarjeta-content-links-vermas:hover {
-  background-color: #ce643a;
-}
-
-.tarjeta-content-links-btn-lugar {
-  background-color: transparent;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: url('../../../assets/icono-loc.png');
-  width: 40px;
-  height: 30px;
-  text-indent: -9999px;
-  overflow: hidden;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
 }
 
 .tarjeta-content-image {

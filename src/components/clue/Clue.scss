@@ -38,10 +38,6 @@ body {
   padding-inline: 40px;
 }
 
-.btn-estado {
-  cursor: default;
-}
-
 .pista-botones-texto {
   font-size: 20px;
   margin: 0;
@@ -85,27 +81,6 @@ body {
   height: 40px;
   position: relative;
   top: -5px;
-}
-
-.pista-linea-botones-estado.btn-verde {
-  color: #65bc49;
-  border: 2px solid #65bc49;
-  background-color: #c7e5c5;
-  font-weight: bold;
-}
-
-.pista-linea-botones-estado.btn-rojo {
-  color: #bc4949;
-  border: 2px solid #bc4949;
-  background-color: #e5c5c5;
-  font-weight: bold;
-}
-
-.pista-linea-botones-estado.btn-amarillo {
-  color: #bcbc49;
-  border: 2px solid #bcbc49;
-  background-color: #e5e5c5;
-  font-weight: bold;
 }
 
 .clue-picture {

@@ -27,7 +27,7 @@
 }
 
 .pistas {
-  width: 90%;
+  width: 95%;
   max-width: none;
   background-color: rgb(229 234 239 / 88%);
   border-radius: 10px;
@@ -40,6 +40,7 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   align-content: start;
+  margin: 10px auto;
 }
 
 .pistas::-webkit-scrollbar {
