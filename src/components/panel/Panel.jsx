@@ -4,6 +4,7 @@ import { db } from '../../model/database/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { useAuth } from '../../context/AuthContext';
 import Tarjeta from './Tarjeta';
+import ProgresoPistas from './ProgresoPistas';
 import Menu from '../menu';
 
 import './Panel.scss';
@@ -12,14 +13,6 @@ const Panel = () => {
   const [clues, setClues] = useState([]);
   const { user } = useAuth();
   const navigate = useNavigate();
-
-  const calculateProgress = () => {
-    if (clues.length === 0) return 0;
-    const completedClues = clues.filter(
-      (clue) => clue.estado === 'Completada',
-    ).length;
-    return Math.round((completedClues / 24) * 100);
-  };
 
   useEffect(() => {
     if (!user) {
@@ -51,26 +44,7 @@ const Panel = () => {
   return (
     <div className="panel-container">
       <Menu photoURL={user?.photoURL} displayName={user?.displayName} />
-
-      {/* Barra de progreso */}
-      <div className="progress-container">
-        <div className="progress-header">
-          <h3>Progreso de Pistas</h3>
-          <span className="progress-percentage">{calculateProgress()}%</span>
-        </div>
-        <div className="progress-bar">
-          <div
-            className="progress-fill"
-            style={{ width: `${calculateProgress()}%` }}
-          ></div>
-        </div>
-        <div className="progress-stats">
-          <span>
-            {clues.filter((clue) => clue.estado === 'Completada').length} de{' '}
-            {clues.length} pistas completadas
-          </span>
-        </div>
-      </div>
+      <ProgresoPistas pistas={clues} />
 
       <div className="panel-content">
         <div className="pistas">

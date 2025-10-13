@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import './Tarjeta.scss';
 import unknownImage from '../../assets/unknown.png';
+
+import './Tarjeta.scss';
 
 const Tarjeta = ({ imagen, adivinanza, estado, lugar, id }) => {
   const clueStatusClass =
