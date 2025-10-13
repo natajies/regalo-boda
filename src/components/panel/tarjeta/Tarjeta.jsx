@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import unknownImage from '../../assets/unknown.png';
+import unknownImage from '../../../assets/unknown.png';
 
 import './Tarjeta.scss';
 

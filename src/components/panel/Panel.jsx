@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { db } from '../../model/database/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { useAuth } from '../../context/AuthContext';
-import Tarjeta from './Tarjeta';
-import ProgresoPistas from './ProgresoPistas';
+import Tarjeta from './tarjeta';
+import ProgresoPistas from './progreso';
 import Menu from '../menu';
 
 import './Panel.scss';

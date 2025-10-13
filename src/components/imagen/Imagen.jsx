@@ -1,6 +1,4 @@
-import './Tarjeta.scss';
-
-const ProgresoPistas = ({ pistas }) => {
+const Imagen = ({ pistas }) => {
   const calcularProgreso = () => {
     if (pistas.length > 0) {
       return Math.round(
@@ -33,4 +31,4 @@ const ProgresoPistas = ({ pistas }) => {
   );
 };
 
-export default ProgresoPistas;
+export default Imagen;
