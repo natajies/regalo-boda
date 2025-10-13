@@ -15,6 +15,7 @@ import {
 } from 'firebase/firestore';
 import pistaPendiente from '../../assets/pista_pendiente.png'; // Importa la imagen por defecto
 import Menu from '../menu';
+import Imagen from '../imagen/Imagen';
 
 import './Clue.scss';
 
@@ -23,7 +24,6 @@ const Clue = () => {
   const { user } = useAuth();
   const [clue, setClue] = useState(null);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   // Comentarios
   const [comments, setComments] = useState([]); // lista de comentarios
@@ -176,17 +176,13 @@ const Clue = () => {
 
   return (
     <div style={{ height: '100vh', overflowY: 'auto' }}>
-      <Menu photoURL={user?.photoURL} displayName={user?.displayName} />
+      <Menu
+        photoURL={user?.photoURL}
+        displayName={user?.displayName}
+        showArrowButton={true}
+      />
 
       <div className="clue-container">
-        <div className="clue-header">
-          {/* Botón volver a la izquierda */}
-          <div
-            className="clue-header-return arrow arrow-left"
-            onClick={() => navigate('/panel')}
-          ></div>
-        </div>
-
         {/* Título con el texto de la pista */}
         <h2 className="clue-header-title">{clue.adivinanza}</h2>
 
@@ -260,7 +256,7 @@ const Clue = () => {
 
         {/* Imagen por defecto si no se ha subido y la subida en caso contrario */}
         <div className="clue-picture">
-          <img src={clue.imagen ? clue.imagen : pistaPendiente} />
+          <Imagen imagen={clue.imagen} unknownImage={pistaPendiente} />
         </div>
 
         {/* COMENTARIOS */}

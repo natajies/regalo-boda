@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import unknownImage from '../../../assets/unknown.png';
 
 import './Tarjeta.scss';
+import Imagen from '../../imagen/Imagen';
 
 const Tarjeta = ({ imagen, adivinanza, estado, lugar, id }) => {
   const clueStatusClass =
@@ -24,11 +25,11 @@ const Tarjeta = ({ imagen, adivinanza, estado, lugar, id }) => {
 
   return (
     <div className="tarjeta-content">
-      <img
-        src={imagen || unknownImage}
+      <Imagen
+        imagen={imagen}
+        unknownImage={unknownImage}
         className="tarjeta-content-image"
-        alt="Tarjeta"
-      ></img>
+      />
       <div className="tarjeta-content-adivinanza">
         <p className="tarjeta-content-adivinanza-text">
           {adivinanza || 'No disponible'}

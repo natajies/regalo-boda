@@ -6,16 +6,24 @@
   position: relative;
 }
 
+.menu-with-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5px;
+  box-sizing: border-box;
+}
+
 .menu-infouser {
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 0 20px;
   gap: 10px;
   width: fit-content;
-  margin-left: auto;
   position: relative;
   cursor: pointer;
+  padding: 0 5px;
+  margin-left: auto;
 }
 
 .menu-infouser-foto img {
@@ -88,4 +96,13 @@
 
 .menu-dropdown-item.logout:hover {
   background-color: #afabaa;
+}
+
+.arrow-left {
+  background-image: url('../../assets/icono-dropleft.png');
+}
+
+.menu-return {
+  display: flex;
+  align-items: center;
 }

@@ -117,18 +117,6 @@
   background-color: #ce643a;
 }
 
-.tarjeta-content-image {
-  width: 90%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 2px;
-  margin-bottom: 10px;
-  border: 2px solid #ddd;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  padding: 13px;
-  background-color: #fff;
-}
-
 .tarjeta-content-links-btn-lugar {
   background-color: transparent;
   background-size: cover;
@@ -142,4 +130,8 @@
   border: none;
   cursor: pointer;
   border-radius: 5px;
+}
+
+.tarjeta-content-image {
+  height: 180px;
 }

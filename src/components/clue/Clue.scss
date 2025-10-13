@@ -20,24 +20,13 @@ body {
   padding-bottom: 40px;
 }
 
-.clue-header {
-  height: 100%; /* Usar toda la altura disponible del contenedor flex */
-  display: flex;
-  flex-direction: row;
-  padding: 10px;
-}
-
-.arrow-left {
-  background-image: url('../../assets/icono-dropleft.png');
-}
-
 .clue-menu-dropdown {
   top: 50px;
 }
 
 .clue-header-title {
   text-align: left;
-  padding-inline: 40px ;
+  padding-inline: 40px;
 }
 
 .pista-linea-botones {
@@ -50,7 +39,7 @@ body {
 }
 
 .btn-estado {
-  cursor: default ;
+  cursor: default;
 }
 
 .pista-botones-texto {
@@ -122,11 +111,6 @@ body {
 .clue-picture {
   padding-inline: 40px;
   margin-top: 20px;
-}
-
-.clue-picture img {
-  max-height: 600px;
-  max-width: 100%;
 }
 
 /* COMENTARIOS */
@@ -275,7 +259,7 @@ body {
 
   .clue-header-title {
     font-size: 1.2rem;
-    padding-inline: 20px ;
+    padding-inline: 20px;
   }
 
   .pista-linea-botones {

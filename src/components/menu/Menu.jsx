@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import './Menu.scss';
 
-const Menu = ({ photoURL, displayName }) => {
+const Menu = ({ photoURL, displayName, showArrowButton = false }) => {
   const { logout } = useAuth();
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
@@ -30,8 +30,19 @@ const Menu = ({ photoURL, displayName }) => {
     navigate('/login');
   };
 
+  const positionClass = showArrowButton ? 'menu-with-arrow' : 'menu-no-arrow';
+
   return (
-    <div className="menu">
+    <div className={`menu ${positionClass}`}>
+      {/* Botón volver a la izquierda */}
+      {showArrowButton && (
+        <div
+          className="menu-return arrow arrow-left"
+          onClick={() => navigate('/panel')}
+        ></div>
+      )}
+
+      {/* Información del usuario */}
       <div className="menu-infouser" onClick={handleUserMenuClick}>
         <div className="menu-infouser-foto">
           {photoURL && <img src={photoURL} alt="User" />}
