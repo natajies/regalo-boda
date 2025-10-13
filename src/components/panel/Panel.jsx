@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import './Panel.scss';
+import { useNavigate } from 'react-router-dom';
 import { db } from '../../model/database/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { useAuth } from '../../context/AuthContext';
 import Tarjeta from './Tarjeta';
+import Menu from '../menu';
+
+import './Panel.scss';
 
 const Panel = () => {
   const [clues, setClues] = useState([]);
-  const [showDropdown, setShowDropdown] = useState(false);
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   const calculateProgress = () => {
@@ -47,54 +48,9 @@ const Panel = () => {
     fetchClues();
   }, [user, navigate]);
 
-  // Cerrar dropdown al hacer click fuera
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!event.target.closest('.menu-infouser')) {
-        setShowDropdown(false);
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
-  }, []);
-
-  const handleUserMenuClick = () => {
-    setShowDropdown(!showDropdown);
-  };
-
-  const handleLogout = async () => {
-    await logout();
-    setShowDropdown(false);
-    navigate('/login');
-  };
-
   return (
     <div className="panel-container">
-      <div className="menu">
-        <div className="menu-infouser" onClick={handleUserMenuClick}>
-          <div className="menu-infouser-foto">
-            {user?.photoURL && <img src={user.photoURL} alt="User" />}
-          </div>
-          <div className="menu-infouser-nombre">
-            {user && user.displayName ? user.displayName : 'Usuario'}
-          </div>
-          <div className="menu-infouser-arrow">
-            <div
-              className={`arrow ${showDropdown ? 'arrow-up' : 'arrow-down'}`}
-            />
-          </div>
-        </div>
-
-        {/* Menú desplegable */}
-        {showDropdown && (
-          <div className="menu-dropdown">
-            <div className="menu-dropdown-item logout" onClick={handleLogout}>
-              Cerrar Sesión
-            </div>
-          </div>
-        )}
-      </div>
+      <Menu photoURL={user?.photoURL} displayName={user?.displayName} />
 
       {/* Barra de progreso */}
       <div className="progress-container">

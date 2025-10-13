@@ -13,14 +13,15 @@ import {
   onSnapshot,
   serverTimestamp,
 } from 'firebase/firestore';
-import './Clue.scss';
 import pistaPendiente from '../../assets/pista_pendiente.png'; // Importa la imagen por defecto
+import Menu from '../menu';
+
+import './Clue.scss';
 
 const Clue = () => {
   const { id } = useParams();
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const [clue, setClue] = useState(null);
-  const [showDropdown, setShowDropdown] = useState(false);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -87,22 +88,13 @@ const Clue = () => {
     );
 
   // En caso de no encontrar la pista
-  if (!clue)
+  if (!clue) {
     return (
       <div className="clue-container">
         <h1>No se encontró la pista</h1>
       </div>
     );
-
-  const handleUserMenuClick = () => {
-    setShowDropdown(!showDropdown);
-  };
-
-  const handleLogout = async () => {
-    await logout();
-    setShowDropdown(false);
-    navigate('/login');
-  };
+  }
 
   const clueStatusClass =
     clue.estado === 'Pendiente'
@@ -184,6 +176,8 @@ const Clue = () => {
 
   return (
     <div style={{ height: '100vh', overflowY: 'auto' }}>
+      <Menu photoURL={user?.photoURL} displayName={user?.displayName} />
+
       <div className="clue-container">
         <div className="clue-header">
           {/* Botón volver a la izquierda */}
@@ -191,29 +185,6 @@ const Clue = () => {
             className="clue-header-return arrow arrow-left"
             onClick={() => navigate('/panel')}
           ></div>
-          {/* Mostrar el icono del usuario con el cerrar sesión y el nombre de usuario */}
-          <div className="menu-infouser" onClick={handleUserMenuClick}>
-            <div className="menu-infouser-foto">
-              {user?.photoURL && <img src={user.photoURL} alt="User" />}
-            </div>
-            <div className="menu-infouser-nombre">
-              {user && user.displayName ? user.displayName : 'Usuario'}
-            </div>
-            <div className="menu-infouser-arrow">
-              <div
-                className={`arrow ${showDropdown ? 'arrow-up' : 'arrow-down'}`}
-              />
-            </div>
-          </div>
-
-          {/* Menú desplegable */}
-          {showDropdown && (
-            <div className="menu-dropdown clue-menu-dropdown">
-              <div className="menu-dropdown-item logout" onClick={handleLogout}>
-                Cerrar Sesión
-              </div>
-            </div>
-          )}
         </div>
 
         {/* Título con el texto de la pista */}
