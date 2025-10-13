@@ -160,7 +160,7 @@ const Clue = () => {
   };
 
   return (
-    <div style={{ height: '100vh', overflowY: 'auto' }}>
+    <div className="clue-mainContainer">
       <Menu
         photoURL={user?.photoURL}
         displayName={user?.displayName}
