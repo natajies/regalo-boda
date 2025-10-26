@@ -80,6 +80,9 @@
 }
 
 @media (orientation: portrait) {
+  .login {
+    height: 100svh;
+  }
   .login-form {
     width: 100vw;
     height: 100svh;
@@ -91,11 +94,5 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-}
-
-@media (orientation: portrait) and (max-width: 600px) {
-  .login-form {
-    padding-top: env(safe-area-inset-top);
   }
 }
