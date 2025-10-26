@@ -26,6 +26,12 @@
   min-height: 0;
 }
 
+@media (max-width: 600px) {
+  .panel-content {
+    padding-bottom: env(safe-area-inset-bottom, 24px);
+  }
+}
+
 .pistas {
   width: 95%;
   max-width: none;
