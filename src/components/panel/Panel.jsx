@@ -15,6 +15,7 @@ const Panel = () => {
   const navigate = useNavigate();
   const [filtroEstado, setFiltroEstado] = useState('');
   const [filtroLugar, setFiltroLugar] = useState('');
+  const [mostrarFiltros, setMostrarFiltros] = useState(false);
 
   useEffect(() => {
     if (!user) {
@@ -51,36 +52,41 @@ const Panel = () => {
       <ProgresoPistas pistas={clues} />
 
       <div className="panel-container-filtros">
-        <form>
-          <label>
-            Lugar:
-            <select
-              value={filtroLugar}
-              onChange={(e) => setFiltroLugar(e.target.value)}
-            >
-              <option value="">Todos</option>
-              {lugaresPistas.map((lugar) => (
-                <option key={lugar} value={lugar}>
-                  {lugar}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
-            Estado:
-            <select
-              value={filtroEstado}
-              onChange={(e) => setFiltroEstado(e.target.value)}
-            >
-              <option value="">Todos</option>
-              <option value="Pendiente">Pendiente</option>
-              <option value="Completada">Completada</option>
-              <option value="Rechazada">Rechazada</option>
-            </select>
-          </label>
-        </form>
+        <div
+          className={`panel-container-filtros-flecha arrow ${mostrarFiltros ? 'arrow-up' : 'arrow-down'}`}
+          onClick={() => setMostrarFiltros((v) => !v)}
+        />
+        {mostrarFiltros && (
+          <form>
+            <label>
+              Lugar:
+              <select
+                value={filtroLugar}
+                onChange={(e) => setFiltroLugar(e.target.value)}
+              >
+                <option value="">Todos</option>
+                {lugaresPistas.map((lugar) => (
+                  <option key={lugar} value={lugar}>
+                    {lugar}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Estado:
+              <select
+                value={filtroEstado}
+                onChange={(e) => setFiltroEstado(e.target.value)}
+              >
+                <option value="">Todos</option>
+                <option value="Pendiente">Pendiente</option>
+                <option value="Completada">Completada</option>
+                <option value="Rechazada">Rechazada</option>
+              </select>
+            </label>
+          </form>
+        )}
       </div>
-
       <div className="panel-content">
         <div className="pistas">
           {clues
