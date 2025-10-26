@@ -13,6 +13,8 @@ const Panel = () => {
   const [clues, setClues] = useState([]);
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [filtroEstado, setFiltroEstado] = useState('');
+  const [filtroLugar, setFiltroLugar] = useState('');
 
   useEffect(() => {
     if (!user) {
@@ -41,14 +43,52 @@ const Panel = () => {
     fetchClues();
   }, [user, navigate]);
 
+  const lugaresPistas = [...new Set(clues.map((clue) => clue.lugar))];
+
   return (
     <div className="panel-container">
       <Menu photoURL={user?.photoURL} displayName={user?.displayName} />
       <ProgresoPistas pistas={clues} />
 
+      <div className="panel-container-filtros">
+        <form>
+          <label>
+            Lugar:
+            <select
+              value={filtroLugar}
+              onChange={(e) => setFiltroLugar(e.target.value)}
+            >
+              <option value="">Todos</option>
+              {lugaresPistas.map((lugar) => (
+                <option key={lugar} value={lugar}>
+                  {lugar}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Estado:
+            <select
+              value={filtroEstado}
+              onChange={(e) => setFiltroEstado(e.target.value)}
+            >
+              <option value="">Todos</option>
+              <option value="Pendiente">Pendiente</option>
+              <option value="Completada">Completada</option>
+              <option value="Rechazada">Rechazada</option>
+            </select>
+          </label>
+        </form>
+      </div>
+
       <div className="panel-content">
         <div className="pistas">
           {clues
+            .filter(
+              (clue) =>
+                (!filtroEstado || clue.estado === filtroEstado) &&
+                (!filtroLugar || clue.lugar === filtroLugar),
+            )
             .sort((a, b) => {
               const ordenar = ['Rechazada', 'Pendiente', 'Completada'];
               return ordenar.indexOf(a.estado) - ordenar.indexOf(b.estado);
