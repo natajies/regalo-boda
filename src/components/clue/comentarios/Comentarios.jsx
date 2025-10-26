@@ -49,7 +49,7 @@ const Comentarios = () => {
     );
 
     return () => unsubscribe();
-  }, [comentariosCollectionRef, id]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Función para gestionar los comentarios
   const handlePostComment = async () => {
