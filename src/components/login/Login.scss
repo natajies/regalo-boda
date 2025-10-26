@@ -93,3 +93,9 @@
     align-items: center;
   }
 }
+
+@media (orientation: portrait) and (max-width: 600px) {
+  .login-form {
+    padding-top: env(safe-area-inset-top);
+  }
+}
