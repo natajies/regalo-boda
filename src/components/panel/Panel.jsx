@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../model/database/firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, onSnapshot } from 'firebase/firestore';
 import { useAuth } from '../../context/AuthContext';
 import Tarjeta from './tarjeta';
 import ProgresoPistas from './progreso';
@@ -15,6 +15,7 @@ const Panel = () => {
   const navigate = useNavigate();
   const [filtroEstado, setFiltroEstado] = useState('');
   const [filtroLugar, setFiltroLugar] = useState('');
+  const [pistaLoading, setPistasLoading] = useState(true);
 
   useEffect(() => {
     if (!user) {
@@ -22,13 +23,16 @@ const Panel = () => {
       return;
     }
 
-    const fetchClues = async () => {
-      try {
-        const cluesCollection = await getDocs(collection(db, 'pistas'));
-        setClues(
-          cluesCollection.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
-        );
-      } catch (error) {
+    setPistasLoading(true);
+
+    const pistasRef = collection(db, 'pistas');
+    const unsubscribe = onSnapshot(
+      pistasRef,
+      (snapshot) => {
+        setClues(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+        setPistasLoading(false);
+      },
+      (error) => {
         setClues([
           {
             id: 'error',
@@ -37,10 +41,11 @@ const Panel = () => {
             ayuda: `Código: ${error.code}`,
           },
         ]);
-      }
-    };
+        setPistasLoading(false);
+      },
+    );
 
-    fetchClues();
+    return () => unsubscribe();
   }, [user, navigate]);
 
   const lugaresPistas = [...new Set(clues.map((clue) => clue.lugar))];
@@ -82,29 +87,33 @@ const Panel = () => {
               </label>
             </form>
           </div>
-          {clues
-            .filter(
-              (clue) =>
-                (!filtroEstado || clue.estado === filtroEstado) &&
-                (!filtroLugar || clue.lugar === filtroLugar),
-            )
-            .sort((a, b) => {
-              const ordenar = ['Rechazada', 'Pendiente', 'Completada'];
-              return ordenar.indexOf(a.estado) - ordenar.indexOf(b.estado);
-            })
-            .map((clue) => {
-              return (
-                <div className="pistas-linea" key={clue.id}>
-                  <Tarjeta
-                    imagen={clue.imagen}
-                    adivinanza={clue.adivinanza}
-                    estado={clue.estado}
-                    lugar={clue.lugar}
-                    id={clue.id}
-                  />
-                </div>
-              );
-            })}
+          {pistaLoading ? (
+            <div className="pistas-loading">Cargando pistas...</div>
+          ) : (
+            clues
+              .filter(
+                (clue) =>
+                  (!filtroEstado || clue.estado === filtroEstado) &&
+                  (!filtroLugar || clue.lugar === filtroLugar),
+              )
+              .sort((a, b) => {
+                const ordenar = ['Rechazada', 'Pendiente', 'Completada'];
+                return ordenar.indexOf(a.estado) - ordenar.indexOf(b.estado);
+              })
+              .map((clue) => {
+                return (
+                  <div className="pistas-linea" key={clue.id}>
+                    <Tarjeta
+                      imagen={clue.imagen}
+                      adivinanza={clue.adivinanza}
+                      estado={clue.estado}
+                      lugar={clue.lugar}
+                      id={clue.id}
+                    />
+                  </div>
+                );
+              })
+          )}
         </div>
       </div>
     </div>
