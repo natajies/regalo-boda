@@ -40,7 +40,7 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   align-content: start;
-  margin: 40px auto 80px auto;
+  margin: 100px auto 100px auto;
 }
 
 .pistas::-webkit-scrollbar {
@@ -73,34 +73,18 @@
 }
 
 .panel-container-filtros {
-  position: relative;
-  background-color: rgb(229 234 239 / 88%);
-  border-radius: 5px;
-  padding: 20px;
-  margin: 20px auto 20px auto;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
-  max-width: 900px;
-  width: 90%;
+  grid-column: 1 / -1;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  border-bottom: 2px solid #e0e4ea;
+  width: 100%;
+  padding: 20px;
+  margin: 0 0 0 0;
+  box-shadow: none;
   min-height: 44px;
   transition: min-height 0.2s;
-}
-
-.panel-container-filtros:not(:has(form)) {
-  min-height: 15px;
-}
-
-.panel-container-filtros-flecha {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  cursor: pointer;
-  width: 32px;
-  height: 32px;
-  z-index: 2;
+  box-sizing: border-box;
 }
 
 .panel-container-filtros select {
@@ -151,26 +135,34 @@
 
 @media (orientation: portrait) {
   .pistas {
-    margin: 10px auto 100px auto;
+    margin: 100px auto 120px auto;
+  }
+
+  .panel-container-filtros {
+    padding: 16px;
+    min-height: auto;
   }
 
   .panel-container-filtros form {
     display: flex;
-    flex-direction: row;
-    gap: 16px;
-    align-items: center;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
     justify-content: flex-start;
+    width: 100%;
   }
   .panel-container-filtros label {
     flex: none;
     display: flex;
-    align-items: center;
-    gap: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
     margin-right: 0;
+    width: 100%;
   }
   .panel-container-filtros select {
-    width: 230px;
-    min-width: 230px;
-    max-width: 230px;
+    width: 100%;
+    min-width: auto;
+    max-width: none;
   }
 }
