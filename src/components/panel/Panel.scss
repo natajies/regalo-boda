@@ -26,12 +26,6 @@
   min-height: 0;
 }
 
-@media (max-width: 600px) {
-  .panel-content {
-    padding-bottom: env(safe-area-inset-bottom, 24px);
-  }
-}
-
 .pistas {
   width: 95%;
   max-width: none;
@@ -46,7 +40,7 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   align-content: start;
-  margin: 10px auto;
+  margin: 40px auto 80px auto;
 }
 
 .pistas::-webkit-scrollbar {
@@ -156,6 +150,10 @@
 }
 
 @media (orientation: portrait) {
+  .clue-container {
+    margin: 10px auto 120px auto;
+  }
+
   .panel-container-filtros form {
     display: flex;
     flex-direction: row;
