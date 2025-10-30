@@ -15,7 +15,6 @@ const Panel = () => {
   const navigate = useNavigate();
   const [filtroEstado, setFiltroEstado] = useState('');
   const [filtroLugar, setFiltroLugar] = useState('');
-  const [mostrarFiltros, setMostrarFiltros] = useState(false);
 
   useEffect(() => {
     if (!user) {

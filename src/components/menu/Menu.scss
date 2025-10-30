@@ -55,6 +55,13 @@
   background-image: url('../../assets/icono-dropup.png');
 }
 
+.arrow-down,
+.arrow-up,
+.arrow-left {
+  filter: invert(24%) sepia(16%) saturate(747%) hue-rotate(330deg)
+    brightness(90%) contrast(90%);
+}
+
 .menu-dropdown {
   position: absolute;
   top: 100%;
