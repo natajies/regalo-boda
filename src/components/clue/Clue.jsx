@@ -8,6 +8,7 @@ import Menu from '../menu';
 import Imagen from '../imagen/Imagen';
 import { BotonEstado, BotonGenerico } from '../botones';
 import mostrarUbicacionPista from '../../model/features/mostrarUbicacionPista';
+import { useNavigate } from 'react-router-dom';
 
 import './Clue.scss';
 import Comentarios from './comentarios/Comentarios';
@@ -17,9 +18,15 @@ const Clue = () => {
   const { user } = useAuth();
   const [clue, setClue] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   // Cargar los datos de la pista
   useEffect(() => {
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+
     const fetchClue = async () => {
       try {
         const docRef = doc(db, 'pistas', id);
@@ -34,7 +41,7 @@ const Clue = () => {
     };
 
     fetchClue();
-  }, [id]);
+  }, [id, navigate, user]);
 
   // Cargando
   if (loading)
